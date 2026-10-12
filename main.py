@@ -50,3 +50,6 @@ y_pred = (y_pred_probs >= 0.5).astype(int)
 
 print(classification_report(y_test, y_pred))
 print(f"ROC-AUC Score: {roc_auc_score(y_test,y_pred_probs):.4f}")
+
+#currently this model works through complete guessing as the attack vs not attack was assigned randomly
+#needs to be added on

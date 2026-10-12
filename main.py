@@ -35,6 +35,7 @@ params = {
 }
 
 num_round = 1000
+callbacks = [lgb.early_stopping(stopping_rounds=50),lgb.log_evaluation(period=50)]
 
 model = lgb.train(
     params,

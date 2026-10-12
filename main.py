@@ -10,7 +10,7 @@ n_features = 30
 
 X = pd.DataFrame(np.random.rand(n_samples,n_features),columns = [f"feature_{i}" for i in range(n_features)])
 #rn the features are useless but later can make them related to determining whether it is an attack or not
-X['protocol'] = np.random.choice(['feat1','feat2','feat3'], size=n_samples).astype('category')
+X['protocol'] = pd.Categorical(np.random.choice(['feat1','feat2','feat3'], size=n_samples))
 #not a balanced dataset
 y = np.random.choice([0,1], size = n_samples, p = [0.85, 0.15])
 

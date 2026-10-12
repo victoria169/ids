@@ -24,7 +24,7 @@ params = {
     'metric': ['binary_logloss','auc'],
     'boosting_type': 'gbdt',
     'learning_rate': 0.05,
-    'num_leaves': 67
+    'num_leaves': 67,
     'max_depth': -1,
     'feature_fraction': 0.8,
     'bagging_fraction': 0.8,

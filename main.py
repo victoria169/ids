@@ -14,7 +14,7 @@ X['protocol'] = pd.Categorical(np.random.choice(['feat1','feat2','feat3'], size=
 #not a balanced dataset
 y = np.random.choice([0,1], size = n_samples, p = [0.85, 0.15])
 
-X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 67, straify = y)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 67, stratify = y)
 
 training_data = lgb.Dataset(X_train, label = y_train)
 testing_data = lgb.Dataset(X_test, label = y_test, reference = training_data)
@@ -33,6 +33,8 @@ params = {
     'random_state': 67,
     'verbosity': -1
 }
+
+num_round = 1000
 
 model = lgb.train(
     params,

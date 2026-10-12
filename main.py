@@ -1,5 +1,6 @@
 import lightgbm as lgb
 import numpy as np
+import pandas as pd
 
 rng = np.random.default_rng()
 data = rng.uniform(size=(500, 10))  # 500 entities, each contains 10 features

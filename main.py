@@ -9,10 +9,25 @@ n_samples = 10000
 n_features = 30
 
 X = pd.DataFrame(np.random.rand(n_samples,n_features),columns = [f"feature_{i}" for i in range(n_features)])
-#rn the features are useless but later can make them related to determining whether it is an attack or not
-X['protocol'] = pd.Categorical(np.random.choice(['feat1','feat2','feat3'], size=n_samples))
+
+#tcp, udp, and icmp are traffie features that can indicate risk but are not a 100% guarantee of an attack
+#ill see if there are other features later
+#these are abbrev. so you can search up the terms to better understand them
+X['protocol'] = pd.Categorical(np.random.choice(['tcp','udp','icmp'], size=n_samples))
 #not a balanced dataset
-y = np.random.choice([0,1], size = n_samples, p = [0.85, 0.15])
+protocol_effect = X["protocol"].map({"tcp": 0.6, "udp": -0.3, "icmp": 1.1}).astype(float)
+
+logit = (
+    -3.2  # baseline controls overall attack rate (~15%)
+    + 2.8 * X["feature_0"]
+    + 2.4 * X["feature_1"]
+    - 1.5 * X["feature_2"]
+    + 2.2 * (X["feature_0"] * X["feature_1"])  # non-linear interaction
+    + protocol_effect
+)
+
+attack_prob = 1.0 / (1.0 + np.exp(-logit))
+y = np.random.binomial(n=1, p=attack_prob)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 67, stratify = y)
 

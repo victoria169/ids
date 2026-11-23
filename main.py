@@ -47,7 +47,7 @@ params = {
     'boosting_type': 'gbdt',
     'learning_rate': 0.05,
     'num_leaves': 67,
-    'num_iterations': 50
+    'num_iterations': 50,
     'max_depth': -1,
     'feature_fraction': 0.8,
     'bagging_fraction': 0.8,

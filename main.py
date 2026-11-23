@@ -30,9 +30,12 @@ logit = (
     + protocol_effect
 )
 
+#converts each sample's risk (logit) into attack probability
 attack_prob = 1.0 / (1.0 + np.exp(-logit))
+#flips a weighted coin to assign final label for attack
 y = np.random.binomial(n=1, p=attack_prob)
 
+#x is the given input features and y is the answer (either 0 or 1)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 67, stratify = y)
 
 training_data = lgb.Dataset(X_train, label = y_train)

@@ -15,14 +15,16 @@ X = pd.DataFrame(np.random.rand(n_samples,n_features),columns = [f"feature_{i}" 
 #these are abbrev. so you can search up the terms to better understand them
 X['protocol'] = pd.Categorical(np.random.choice(['tcp','udp','icmp'], size=n_samples))
 #not a balanced dataset
+#udp is least likely to be attack and icmp is most likely to be attack
 protocol_effect = X["protocol"].map({"tcp": 0.6, "udp": -0.3, "icmp": 1.1}).astype(float)
 
+#right now these features are js blank variables but can later assign them things like connection duration, byte counts, failed login counts, etc
 logit = (
-    -3.2  # baseline controls overall attack rate (~15%)
-    + 2.8 * X["feature_0"]
+    -3.2  # baseline log odds when features and ref protocol effect is 0; starts low to keep overall attack prevalence 15% 
+    + 2.8 * X["feature_0"] #positive, increases attack probability
     + 2.4 * X["feature_1"]
-    - 1.5 * X["feature_2"]
-    + 2.2 * (X["feature_0"] * X["feature_1"])  # non-linear interaction
+    - 1.5 * X["feature_2"] #negative, decreases attack probability
+    + 2.2 * (X["feature_0"] * X["feature_1"])  #non-linear interaction
     + protocol_effect
 )
 

@@ -53,7 +53,10 @@ params = {
     'bagging-freq': 1,
     'is_unbalance': True,
     'random_state': 67,
-    'verbosity': -1
+    'verbosity': -1,
+    'min_data_in_leaf': 20,
+    'min_sum_hessian_in_leaf': 0.001,
+    'min_gain_to_split': 0.0
 }
 
 num_round = 1000

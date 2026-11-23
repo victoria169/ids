@@ -70,5 +70,15 @@ y_pred = (y_pred_probs >= 0.5).astype(int)
 print(classification_report(y_test, y_pred))
 print(f"ROC-AUC Score: {roc_auc_score(y_test,y_pred_probs):.4f}")
 
-#currently this model works through complete guessing as the attack vs not attack was assigned randomly
-#needs to be added on
+#how to read results (kinda)
+#0=normal traffic and 1=attack
+#precision is how often the model is correct when predicting 0 or 1
+    #e.g. if the precision for 0 is 0.78 that means 78% of the time the model correctly identified normal traffice
+        #the other 22% of the time it wrongly flagged attacks as normal traffic
+#recall is out of all 0 or 1 what fraction did the model catch
+#f1 is harmoic mean of precision and recall; how good the score is depends on how balanced your dataset is
+#micro avg is teh unweighted simple average across classes
+#weight average is the weighted average across classes (based on support)
+    #support for both shows how many samples were used as tests (the rest are for training)
+#support is the actual number of attacks that were either 0 or 1
+#roc-auc [0.50,1.00] where 0.50 is guessing and 1.00 is perfect classification

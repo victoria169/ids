@@ -56,7 +56,7 @@ params = {
     'random_state': 67,
     'verbosity': -1,
     'min_data_in_leaf': 20,
-    'min_sum_hessian_in_leaf': 0.001,
+    'min_sum_hessian_in_leaf': 0.1,
     'min_gain_to_split': 0.0
 }
 

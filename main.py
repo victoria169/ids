@@ -14,7 +14,7 @@ X = pd.DataFrame(np.random.rand(n_samples,n_features),columns = [f"feature_{i}" 
 #ill see if there are other features later
 #these are abbrev. so you can search up the terms to better understand them
 X['protocol'] = pd.Categorical(np.random.choice(['tcp','udp','icmp'], size=n_samples))
-#not a balanced dataset
+#more balanced dataset
 #udp is least likely to be attack and icmp is most likely to be attack
 protocol_effect = X["protocol"].map({"tcp": 0.6, "udp": -0.3, "icmp": 1.1}).astype(float)
 

@@ -19,6 +19,8 @@ X['protocol'] = pd.Categorical(np.random.choice(['tcp','udp','icmp'], size=n_sam
 protocol_effect = X["protocol"].map({"tcp": 0.6, "udp": -0.3, "icmp": 1.1}).astype(float)
 
 #right now these features are js blank variables but can later assign them things like connection duration, byte counts, failed login counts, etc
+#note that there are multiple different "features" that can point to an attack
+#the features above this code are protocols, but other features should be added to increase deduction ability
 logit = (
     -3.2  # baseline log odds when features and ref protocol effect is 0; starts low to keep overall attack prevalence 15% 
     + 2.8 * X["feature_0"] #positive, increases attack probability
